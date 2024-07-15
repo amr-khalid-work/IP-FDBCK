@@ -196,7 +196,7 @@ button:hover {
   right: 10px;
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Adjust gap as needed */
+  gap: 0.5rem;
 }
 
 .editIco:hover, .closeIco:hover {
@@ -289,7 +289,12 @@ button:hover {
   margin-left: 0.5rem;
 }
 
+
+
 @media (max-width: 768px) {
+  .rating {
+    justify-content:center;
+  }
   h1 {
     font-size: 2rem;
   }

@@ -9,7 +9,8 @@ function Form() {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
-  const { addFeedback, feedbackEdit, updateFeedback } = useContext(FeedbackContext);
+  const { addFeedback, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
 
   const textareaRef = useRef(null);
 
@@ -56,7 +57,6 @@ function Form() {
         addFeedback(newItemCard);
       }
 
-      // Reset form state after submission
       setText("");
       setRating(10);
       setBtnDisabled(true);

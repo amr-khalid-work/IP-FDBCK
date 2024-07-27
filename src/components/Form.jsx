@@ -9,7 +9,7 @@ function Form() {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
-  const { addFeedback, feedbackEdit, updateFeedback } =
+  const { addFeedback, feedbackEdit, updateFeedback, resetFeedbackEdit } =
     useContext(FeedbackContext);
 
   const textareaRef = useRef(null);
@@ -19,6 +19,7 @@ function Form() {
       setBtnDisabled(false);
       setText(feedbackEdit.item.text);
       setRating(feedbackEdit.item.rating);
+      autoResizeTextarea(); // Adjust textarea size based on existing text
     }
   }, [feedbackEdit]);
 
@@ -46,13 +47,11 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length >= 10) {
-      const newItemCard = {
-        text,
-        rating,
-      };
+      const newItemCard = { text, rating };
 
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item.id, newItemCard);
+        resetFeedbackEdit(); // Reset the edit state after updating
       } else {
         addFeedback(newItemCard);
       }
@@ -60,6 +59,13 @@ function Form() {
       setText("");
       setRating(10);
       setBtnDisabled(true);
+      resetTextareaSize(); // Reset textarea size after submit
+    }
+  };
+
+  const resetTextareaSize = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
     }
   };
 
